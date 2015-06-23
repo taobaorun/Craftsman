@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class ScheduleMain {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws InterruptedException {
 
         /*ScheduledExecutorService sheduler = Executors.newSingleThreadScheduledExecutor();
         sheduler.scheduleWithFixedDelay(new Runnable() {
@@ -25,7 +25,14 @@ public class ScheduleMain {
             }
         },2,2, TimeUnit.SECONDS);*/
 
-        scheduleFixRate();
+        ScheduledExecutorService scheduleFixRate = scheduleFixRate(1000,10);
+        Thread.sleep(2000);
+        scheduleFixRate.execute(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(Thread.currentThread().getId()+"-----------------execute-------------"+new Date());
+            }
+        });
 
     }
 
@@ -34,19 +41,25 @@ public class ScheduleMain {
      * scheduleAtFixedRate 如果方法的执行时间超过period ，方法执行完成后，立即执行下次调用
      *
      */
-    public static void scheduleFixRate(){
-        ScheduledExecutorService sheduler = Executors.newSingleThreadScheduledExecutor();
-        sheduler.scheduleAtFixedRate(new Runnable() {
+    public static ScheduledExecutorService scheduleFixRate(int period,final int sleepTime){
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+        scheduler.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
-                System.out.println(new Date());
+                System.out.println(Thread.currentThread().getId()+"===="+new Date());
                 try {
-                    Thread.sleep(5000);
-                    System.out.println("after---"+new Date());
+                    Thread.sleep(sleepTime);
+                    //System.out.println("after---" + new Date());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-        },1,1,TimeUnit.SECONDS);
+        }, 1, period, TimeUnit.MILLISECONDS);
+        return scheduler;
     }
+
+
+
+
+
 }
