@@ -25,7 +25,8 @@ public class ScheduleMain {
             }
         },2,2, TimeUnit.SECONDS);*/
 
-        ScheduledExecutorService scheduleFixRate = scheduleFixRate(1000,10);
+        ScheduledExecutorService scheduleFixRate = scheduleFixRate(1000,2000);
+//        ScheduledExecutorService scheduleFixRate = scheduleWithFixDelay(1000, 2000);
         Thread.sleep(2000);
         scheduleFixRate.execute(new Runnable() {
             @Override
@@ -57,6 +58,30 @@ public class ScheduleMain {
         }, 1, period, TimeUnit.MILLISECONDS);
         return scheduler;
     }
+
+    /**
+     * scheduleAtFixedRate 如果方法的执行时间超过period ，方法执行完成后 ，+delay时间后才执行下次调用
+     * @param delay
+     * @param sleepTime
+     * @return
+     */
+    public static ScheduledExecutorService scheduleWithFixDelay(int delay,final int sleepTime){
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+        scheduler.scheduleWithFixedDelay(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(Thread.currentThread().getId() + "====" + new Date());
+                try {
+                    Thread.sleep(sleepTime);
+                    //System.out.println("after---" + new Date());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 1, delay, TimeUnit.MILLISECONDS);
+        return scheduler;
+    }
+
 
 
 
