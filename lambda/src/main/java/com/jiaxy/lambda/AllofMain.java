@@ -10,9 +10,7 @@ import java.util.concurrent.ExecutionException;
  * <p/>
  * Description: <br>
  * <p/>
- * Company: <a href=www.jd.com>京东</a><br>
  *
- * @author <a href=mailto:wutao@jd.com>吴涛</a>
  *
  * @since 2015/06/17 16:34
  */

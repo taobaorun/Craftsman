@@ -12,6 +12,7 @@
         <module>concurrent</module>
         <module>io</module>
         <module>lambda</module>
+        <module>core</module>
     </modules>
 
 
