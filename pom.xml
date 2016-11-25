@@ -12,6 +12,7 @@
         <module>concurrent</module>
         <module>io</module>
         <module>core</module>
+        <module>instrument</module>
     </modules>
 
 
