@@ -29,6 +29,8 @@ public class BitOperation {
         for (byte b:hexStringToByteArray(str)){
             System.out.println(b);
         }
+
+        System.out.println(0x1 << 10 -1 );
     }
 
     /**

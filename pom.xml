@@ -13,6 +13,7 @@
         <module>io</module>
         <module>core</module>
         <module>instrument</module>
+        <module>algorithm</module>
     </modules>
 
 

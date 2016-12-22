@@ -25,7 +25,7 @@ public class ScheduleMain {
             }
         },2,2, TimeUnit.SECONDS);*/
 
-        ScheduledExecutorService scheduleFixRate = scheduleFixRate(1000,2000);
+       /* ScheduledExecutorService scheduleFixRate = scheduleFixRate(1000,2000);
 //        ScheduledExecutorService scheduleFixRate = scheduleWithFixDelay(1000, 2000);
         Thread.sleep(2000);
         scheduleFixRate.execute(new Runnable() {
@@ -33,7 +33,9 @@ public class ScheduleMain {
             public void run() {
                 System.out.println(Thread.currentThread().getId()+"-----------------execute-------------"+new Date());
             }
-        });
+        });*/
+
+        scheduleWithFixRateMulti(1000,2000);
 
     }
 
@@ -79,6 +81,34 @@ public class ScheduleMain {
                 }
             }
         }, 1, delay, TimeUnit.MILLISECONDS);
+        return scheduler;
+    }
+
+    public static ScheduledExecutorService scheduleWithFixRateMulti(int delay,final int sleepTime){
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+        scheduler.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(Thread.currentThread().getId() + "==1==" + new Date());
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 1, delay, TimeUnit.MILLISECONDS);
+
+        scheduler.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(Thread.currentThread().getId() + "==2==" + new Date());
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        },1,delay,TimeUnit.MILLISECONDS);
         return scheduler;
     }
 
