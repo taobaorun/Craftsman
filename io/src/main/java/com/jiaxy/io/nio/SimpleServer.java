@@ -29,7 +29,8 @@ public class SimpleServer {
             ss = serverSocketChannel.socket();
             ss.bind(new InetSocketAddress(port));
             serverSocketChannel.configureBlocking(false);
-            serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
+            SelectionKey key = serverSocketChannel.register(selector, 0);
+            key.interestOps(key.interestOps() | SelectionKey.OP_ACCEPT);
         } catch (IOException e) {
             e.printStackTrace();
         }

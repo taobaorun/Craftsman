@@ -5,14 +5,13 @@ package com.jiaxy.core.bit;
  * <p/>
  * Description: <br>
  * <p/>
- *
  */
 public class BitOperation {
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         System.out.println(-(1 << 5));
-        System.out.println( (byte)(0xa0 | 1));
+        System.out.println((byte) (0xa0 | 1));
         BitOperation bo = new BitOperation();
         System.out.println(System.identityHashCode(bo));
         System.out.println(System.identityHashCode(bo) % 100);
@@ -22,15 +21,18 @@ public class BitOperation {
         System.out.println("-----------------");
         String str = byte2hex("ABC".getBytes());
         System.out.println(str);
-        for (byte b:hex2byte(str.getBytes())){
+        for (byte b : hex2byte(str.getBytes())) {
             System.out.println(b);
         }
         System.out.println("--------------");
-        for (byte b:hexStringToByteArray(str)){
+        for (byte b : hexStringToByteArray(str)) {
             System.out.println(b);
         }
 
-        System.out.println(0x1 << 10 -1 );
+        System.out.println(0x1 << 10 - 1);
+
+
+        bitCompare();
     }
 
     /**
@@ -51,7 +53,7 @@ public class BitOperation {
         return b2;
     }
 
-     /**
+    /**
      * 二行制转字符串
      *
      * @param b
@@ -78,5 +80,17 @@ public class BitOperation {
         }
         return data;
     }
+
+
+    public static void bitCompare() {
+        int index = 0;
+        int length = 1;
+        int size = 0;
+        System.out.println(index | length | (index + length) | (size - (index + length)));
+        System.out.println(8 & (~8));
+        System.out.println(0 | 16);
+    }
+
+
 
 }
