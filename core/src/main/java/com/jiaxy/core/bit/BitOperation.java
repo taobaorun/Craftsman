@@ -89,6 +89,8 @@ public class BitOperation {
         System.out.println(index | length | (index + length) | (size - (index + length)));
         System.out.println(8 & (~8));
         System.out.println(0 | 16);
+        System.out.println(Integer.MIN_VALUE + 3 & 0x7FFFFFFF);
+        System.out.println(1 << 2 | 1 << 1);
     }
 
 
